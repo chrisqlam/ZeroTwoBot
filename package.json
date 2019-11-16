@@ -1,0 +1,11 @@
+{
+  "name": "zerobot",
+  "version": "0.0.1",
+  "description": "Discord Bot",
+  "main": "bot.js",
+  "author": "Chris Lam",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
