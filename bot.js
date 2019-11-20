@@ -106,7 +106,7 @@ client.on('message', async message => {
         }
     }
 
-    //
+    //reminder command
     if (command === 'remind') {
         try {
             let time = args[0].replace(/[a-z||A-Z]$/g, '');
