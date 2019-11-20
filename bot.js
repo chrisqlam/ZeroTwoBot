@@ -29,19 +29,20 @@ client.on('message', async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
 
-    let messageArray = message.content.split(/ +/);
-    let command = messageArray[0];
-    let args = messageArray.slice(1);
+    const args = message.content.slice(prefix.length).trim().split(/\s/g);
+    const command = args.shift().toLowerCase();
     const guildId = message.guild.id;
     const guild = client.guilds.get(guildId);
 
+    //no prefix commands
     if (!command.startsWith(prefix)) {
         if (message.content.toLowerCase() === "owo") {
             message.channel.send("What's this?");
         }
     };
 
-    if (command === `${prefix}userinfo`) {
+    //User info command
+    if (command === 'userinfo') {
         let user = message.mentions.members.first();
         try {
             if (!user) {
@@ -72,11 +73,14 @@ client.on('message', async message => {
         }
     }
 
+    //Moon2Coom react
     if (message.content.includes("644411534767816714")) {
         message.react('644412167537557504');
     }
 
-    if (command === `${prefix}jovisub`) {
+
+    //Jovi Sub Command
+    if (command === 'jovisub') {
         try {
             if (guild.roles.get('642190113324924949')) {
                 console.log("Run Jovi Sub");
@@ -96,6 +100,55 @@ client.on('message', async message => {
                 message.channel.send('The JovisSub role does not exist');
             }
         }
+        catch (e) {
+            console.log(e.stack);
+            message.channel.send('An ERROR has occured, check the logs.');
+        }
+    }
+
+    //
+    if (command === 'remind') {
+        try {
+            let time = args[0].replace(/[a-z||A-Z]$/g, '');
+            let timemeasure = args[0].substring(args[0].length -1, args[0].length)
+            let msg = message.content.split(/\s/g);
+
+            console.log('run remind');
+            function sendReminder() {
+                message.reply(msg);
+            }
+
+            switch(timemeasure){
+                case 's':
+                    time *= 1000;
+                    break;
+                case 'm':
+                    time *= 1000 * 60;
+                    break;
+                case 'h':
+                    time *= 1000 * 60 * 60;
+                    break;
+                default:
+                    time *= 1000;
+            }
+
+            //removes the command & time from message
+            msg.splice(0,2);
+
+            msg = msg.join(' ');
+
+            console.log(`${time} ${timemeasure} ${msg}`);
+            console.log('send reminder')
+            if(isNaN(args[0].substring(0,1))) {
+                message.reply('Please ensure you set an amount of time to send your reminder.')
+            }
+            else if(msg) {
+                setTimeout(
+                    sendReminder, time
+                );
+            }
+        }
+
         catch (e) {
             console.log(e.stack);
             message.channel.send('An ERROR has occured, check the logs.');
