@@ -1,6 +1,6 @@
-const botSettings = require("./botsettings.json");
+//const botSettings = require("./botsettings.json");
 const Discord = require("discord.js");
-const prefix = botSettings.prefix;
+const prefix = "!";
 
 
 //create a ready event, the bot will not listen until this checks
@@ -148,7 +148,6 @@ client.on('message', async message => {
                 );
             }
         }
-
         catch (e) {
             console.log(e.stack);
             message.channel.send('An ERROR has occured, check the logs.');
@@ -156,6 +155,6 @@ client.on('message', async message => {
     }
 });
 
-client.login(botSettings.token);
+//client.login(botSettings.token);
 
-//client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
