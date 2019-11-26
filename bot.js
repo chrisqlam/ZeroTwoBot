@@ -145,7 +145,7 @@ client.on('message', async message => {
                 message.reply('Please ensure you set an amount of time to send your reminder.')
             }
             else if (msg) {
-                message.reply(`Okay, I\'ll remind you in ${args[0].replace(/[a-z||A-Z]$/g, '')}${timemeasure}, darling.`)
+                message.reply(`Okay, I\'ll remind you in ${args[0]}, darling.`)
                 setTimeout(
                     sendReminder, time
                 );
