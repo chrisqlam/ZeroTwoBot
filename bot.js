@@ -112,7 +112,6 @@ client.on('message', async message => {
             let time = args[0].replace(/[a-z||A-Z]$/g, '');
             let timemeasure = args[0].substring(args[0].length - 1, args[0].length)
             let msg = message.content.split(/\s/g);
-            let timeMsg;
 
             console.log('run remind');
 
@@ -146,7 +145,7 @@ client.on('message', async message => {
                 message.reply('Please ensure you set an amount of time to send your reminder.')
             }
             else if (msg) {
-                message.reply(`Okay, I\'ll remind you in ${args[0]}${timemeasure}, darling.`)
+                message.reply(`Okay, I\'ll remind you in ${args[0].replace(/[a-z||A-Z]$/g, '')}${timemeasure}, darling.`)
                 setTimeout(
                     sendReminder, time
                 );
