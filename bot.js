@@ -110,15 +110,16 @@ client.on('message', async message => {
     if (command === 'remind') {
         try {
             let time = args[0].replace(/[a-z||A-Z]$/g, '');
-            let timemeasure = args[0].substring(args[0].length -1, args[0].length)
+            let timemeasure = args[0].substring(args[0].length - 1, args[0].length)
             let msg = message.content.split(/\s/g);
 
             console.log('run remind');
+
             function sendReminder() {
                 message.reply(msg);
             }
 
-            switch(timemeasure){
+            switch (timemeasure) {
                 case 's':
                     time *= 1000;
                     break;
@@ -133,16 +134,17 @@ client.on('message', async message => {
             }
 
             //removes the command & time from message
-            msg.splice(0,2);
+            msg.splice(0, 2);
 
             msg = msg.join(' ');
 
             console.log(`${time} ${timemeasure} ${msg}`);
             console.log('send reminder')
-            if(isNaN(args[0].substring(0,1))) {
+            if (isNaN(args[0].substring(0, 1))) {
                 message.reply('Please ensure you set an amount of time to send your reminder.')
             }
-            else if(msg) {
+            else if (msg) {
+                message.reply(`Okay, I\'ll remind you in ${time}${timemeasure}, darling.`)
                 setTimeout(
                     sendReminder, time
                 );
