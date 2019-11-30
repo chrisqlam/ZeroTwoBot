@@ -130,8 +130,7 @@ client.on('message', async message => {
                     time *= 1000 * 60 * 60;
                     break;
                 default:
-                    time *= 1000;
-                    timemeasure = 's';
+                    message.reply('Please ensure you set an amount of time to send your reminder.');
             }
 
             //removes the command & time from message
@@ -140,12 +139,12 @@ client.on('message', async message => {
             msg = msg.join(' ');
 
             console.log(`${time} ${timemeasure} ${msg}`);
-            console.log('send reminder')
+            console.log('send reminder');
             if (isNaN(args[0].substring(0, 1))) {
-                message.reply('Please ensure you set an amount of time to send your reminder.')
+                message.reply('Please ensure you set an amount of time to send your reminder.');
             }
             else if (msg) {
-                message.reply(`Okay, I\'ll remind you in ${args[0]}, darling.`)
+                message.reply(`Okay, I\'ll remind you in ${args[0]}, darling.`);
                 setTimeout(
                     sendReminder, time
                 );
