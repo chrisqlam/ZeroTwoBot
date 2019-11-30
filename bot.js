@@ -112,7 +112,7 @@ client.on('message', async message => {
             let time = args[0].replace(/[a-z||A-Z]$/g, '');
             let timemeasure = args[0].substring(args[0].length - 1, args[0].length)
             let msg = message.content.split(/\s/g);
-
+            let check;
             console.log('run remind');
 
             function sendReminder() {
@@ -130,7 +130,7 @@ client.on('message', async message => {
                     time *= 1000 * 60 * 60;
                     break;
                 default:
-                    let check = false;
+                    check = false;
             }
 
             //removes the command & time from message
