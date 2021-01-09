@@ -1,6 +1,5 @@
 //const botSettings = require("./botsettings.json");
 const Discord = require("discord.js");
-const fetch = require('node-fetch');
 const prefix = "!";
 
 
@@ -130,6 +129,7 @@ client.on('message', async message => {
     }
 
     //waifu command
+    const fetch = require('node-fetch');
 
     if (command=== 'waifu') {
         const { file } = await fetch('https://danbooru.donmai.us/posts.json?tags=1girl+solo+rating:s&random=1&limit=1').then(response => response.json());
