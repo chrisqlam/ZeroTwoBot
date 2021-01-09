@@ -78,34 +78,6 @@ client.on('message', async message => {
         message.react('644412167537557504');
     }
 
-
-    //Jovi Sub Command
-    if (command === 'jovisub') {
-        try {
-            if (guild.roles.get('642190113324924949')) {
-                console.log("Run Jovi Sub");
-                const guildMember = message.member;
-                if (guildMember.roles.has('642190113324924949')) {
-                    guildMember.removeRole('642190113324924949');
-                    message.channel.send(`${guildMember}, you have unsubbed to Jovi`);
-                    return;
-                }
-                else {
-                    guildMember.addRole('642190113324924949');
-                    message.channel.send(`${guildMember}, you are now subbed to Jovi`);
-                    return;
-                }
-            }
-            else {
-                message.channel.send('The JovisSub role does not exist');
-            }
-        }
-        catch (e) {
-            console.log(e.stack);
-            message.channel.send('An ERROR has occured, check the logs.');
-        }
-    }
-
     //reminder command
     if (command === 'remind') {
         try {
@@ -155,7 +127,20 @@ client.on('message', async message => {
             message.channel.send('An ERROR has occured, check the logs.');
         }
     }
+
+    //waifu command
+    const fetch = require('node-fetch');
+
+    if (command=== 'waifu') {
+        const { file } = await fetch('https://danbooru.donmai.us/posts.json?tags=1girl+solo+rating:s&random=1&limit=1').then(response => response.json());
+
+        message.channel.send(file)
+    }
+
+
 });
+
+
 
 //client.login(botSettings.token);
 
